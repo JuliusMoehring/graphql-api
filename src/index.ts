@@ -5,6 +5,12 @@ import dotenv from 'dotenv';
 import {Schema} from './GraphQL/Schema';
 import {enableGraphiQL, getDatabaseUri, getPort} from './utils/env';
 import mongoose from 'mongoose';
+import {Tag} from './Database/Schemas/TagSchema/TagSchema';
+import {Category} from './Database/Schemas/CategorySchema/CategorySchema';
+import {Course} from './Database/Schemas/CourseSchema/CourseSchema';
+import {Trainer} from './Database/Schemas/TrainerSchema/TrainerSchema';
+import {Video} from './Database/Schemas/VideoSchema/VideoSchema';
+import {User} from './Database/Schemas/UserSchema/UserSchema';
 
 dotenv.config();
 const port = getPort();
@@ -44,6 +50,15 @@ mongoose.connect(
         if (error) {
             throw new Error('Could not connect to database');
         }
+
+        const category = new Category();
+        const course = new Course();
+        const tag = new Tag();
+        const trainer = new Trainer();
+        const user = new User();
+        const video = new Video();
+
+        console.log(category, course, tag, trainer, user, video);
 
         app.listen(port, 'localhost', () => {
             console.log(`🚀 Server started at: http://localhost:${port}/v1`);

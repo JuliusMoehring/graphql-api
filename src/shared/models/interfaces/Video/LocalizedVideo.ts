@@ -10,7 +10,7 @@ export interface ILocalizedVideo extends Localizable, Publishable, Releasable, C
     title: string;
     description: string;
     benefits: string[];
+    image: IImage;
     sources: IVideoSource[];
     slug?: string;
-    image?: IImage;
 }
