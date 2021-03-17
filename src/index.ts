@@ -2,7 +2,7 @@ import express, {Request, Response} from 'express';
 import {graphqlHTTP} from 'express-graphql';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import {Schema} from './graphql/Schema';
+import {Schema} from './GraphQL/Schema';
 import {enableGraphiQL, getDatabaseUri, getPort} from './utils/env';
 import mongoose from 'mongoose';
 
