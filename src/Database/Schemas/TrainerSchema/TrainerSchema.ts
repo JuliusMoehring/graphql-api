@@ -4,10 +4,10 @@ import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {minLengthArrayValidator} from '../utils/validation';
 import {ITrainer} from '../../../shared/models/interfaces/Trainer/Trainer';
 import {ILocalizedTrainer} from '../../../shared/models/interfaces/Trainer/LocalizedTrainer';
-import {getLocalizableSchemaDefinition} from '../utils/getLocalizableSchemaDefiniton';
-import {getReleasableSchemaDefinition} from '../utils/getReleasableSchemaDefinition';
-import {getPublishableSchemaDefinition} from '../utils/getPublishableSchemaDefinition';
-import {getImageSchemaDefinition} from '../utils/getImageSchemaDefinition';
+import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
+import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getReleasableSchemaDefinition';
+import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
+import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchemaDefinition';
 
 interface IMongooseTrainer extends IMongooseResult, ITrainer {}
 

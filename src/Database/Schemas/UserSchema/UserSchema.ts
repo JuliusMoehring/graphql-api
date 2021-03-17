@@ -2,8 +2,8 @@ import mongoose, {Document, Schema} from 'mongoose';
 import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/MongooseResult';
 import {IUser} from '../../../shared/models/interfaces/User/User';
-import {getUserRolesSchemaDefinition} from '../utils/getUserRolesSchemaDefinition';
-import {getUserAddressSchemaDefinition} from '../utils/getUserAddressSchemaDefinition';
+import {getUserRolesSchemaDefinition} from '../utils/SchemaDefinitions/getUserRolesSchemaDefinition';
+import {getUserAddressSchemaDefinition} from '../utils/SchemaDefinitions/getUserAddressSchemaDefinition';
 
 interface IMongooseUser extends IMongooseResult, IUser {}
 

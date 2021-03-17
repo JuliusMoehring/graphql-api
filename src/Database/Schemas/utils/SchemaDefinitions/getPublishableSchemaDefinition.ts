@@ -1,4 +1,4 @@
-import {RobotsEnum} from '../../../shared/models/enums/RobotsEnum';
+import {RobotsEnum} from '../../../../shared/models/enums/RobotsEnum';
 
 export const getPublishableSchemaDefinition = () => ({
     title: {

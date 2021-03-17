@@ -1,4 +1,4 @@
-import {LocaleEnum} from '../../../shared/models/enums/LocaleEnum';
+import {LocaleEnum} from '../../../../shared/models/enums/LocaleEnum';
 
 export const getLocalizableSchemaDefinition = () => ({
     type: String,

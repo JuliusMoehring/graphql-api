@@ -4,7 +4,7 @@ import {ITag} from '../../../shared/models/interfaces/Tag/Tag';
 import {minLengthArrayValidator} from '../utils/validation';
 import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/MongooseResult';
-import {getLocalizableSchemaDefinition} from '../utils/getLocalizableSchemaDefiniton';
+import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
 
 interface IMongooseTag extends IMongooseResult, ITag {}
 

@@ -2,13 +2,13 @@ import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/
 import mongoose, {Document, Schema} from 'mongoose';
 import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {minLengthArrayValidator} from '../utils/validation';
-import {getLocalizableSchemaDefinition} from '../utils/getLocalizableSchemaDefiniton';
-import {getReleasableSchemaDefinition} from '../utils/getReleasableSchemaDefinition';
-import {getPublishableSchemaDefinition} from '../utils/getPublishableSchemaDefinition';
+import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
+import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getReleasableSchemaDefinition';
+import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
 import {IVideo} from '../../../shared/models/interfaces/Video/Video';
 import {ILocalizedVideo} from '../../../shared/models/interfaces/Video/LocalizedVideo';
-import {getVideoSourceSchemaDefinition} from '../utils/getVideoSourceSchemaDefinition';
-import {getImageSchemaDefinition} from '../utils/getImageSchemaDefinition';
+import {getVideoSourceSchemaDefinition} from '../utils/SchemaDefinitions/getVideoSourceSchemaDefinition';
+import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchemaDefinition';
 
 interface IMongooseVideo extends IMongooseResult, IVideo {}
 

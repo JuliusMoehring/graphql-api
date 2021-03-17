@@ -4,9 +4,9 @@ import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/MongooseResult';
 import {ICategory} from '../../../shared/models/interfaces/Category/Category';
 import {ILocalizedCategory} from '../../../shared/models/interfaces/Category/LocalizedCategory';
-import {getLocalizableSchemaDefinition} from '../utils/getLocalizableSchemaDefiniton';
-import {getReleasableSchemaDefinition} from '../utils/getReleasableSchemaDefinition';
-import {getPublishableSchemaDefinition} from '../utils/getPublishableSchemaDefinition';
+import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
+import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getReleasableSchemaDefinition';
+import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
 
 interface IMongooseCategory extends IMongooseResult, ICategory {}
 

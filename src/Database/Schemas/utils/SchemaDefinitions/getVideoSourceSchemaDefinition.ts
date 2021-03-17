@@ -1,4 +1,4 @@
-import {ContentTypeEnum} from '../../../shared/models/enums/ContentTypeEnum';
+import {ContentTypeEnum} from '../../../../shared/models/enums/ContentTypeEnum';
 
 export const getVideoSourceSchemaDefinition = () => ({
     contentType: {
