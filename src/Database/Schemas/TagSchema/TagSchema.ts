@@ -6,7 +6,11 @@ import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/MongooseResult';
 import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
 
-interface IMongooseTag extends IMongooseResult, ITag {}
+interface IMongooseTag extends IMongooseResult, Omit<ITag, 'courses' | 'trainers' | 'videos'> {
+    courses: Schema.Types.ObjectId[];
+    trainers: Schema.Types.ObjectId[];
+    videos: Schema.Types.ObjectId[];
+}
 
 const LocalizedTagSchema = new Schema<ILocalizedTag & Document>(
     {

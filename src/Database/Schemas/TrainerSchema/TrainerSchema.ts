@@ -9,7 +9,11 @@ import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getRelea
 import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
 import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchemaDefinition';
 
-interface IMongooseTrainer extends IMongooseResult, ITrainer {}
+interface IMongooseTrainer extends IMongooseResult, Omit<ITrainer, 'categories' | 'courses' | 'videos'> {
+    categories: Schema.Types.ObjectId[];
+    courses: Schema.Types.ObjectId[];
+    videos: Schema.Types.ObjectId[];
+}
 
 const LocalizedTrainerSchema = new Schema<ILocalizedTrainer & Document>(
     {

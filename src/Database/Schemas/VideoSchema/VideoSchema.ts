@@ -10,7 +10,12 @@ import {ILocalizedVideo} from '../../../shared/models/interfaces/Video/Localized
 import {getVideoSourceSchemaDefinition} from '../utils/SchemaDefinitions/getVideoSourceSchemaDefinition';
 import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchemaDefinition';
 
-interface IMongooseVideo extends IMongooseResult, IVideo {}
+interface IMongooseVideo extends IMongooseResult, Omit<IVideo, 'categories' | 'courses' | 'tags' | 'trainers'> {
+    categories: Schema.Types.ObjectId[];
+    courses: Schema.Types.ObjectId[];
+    tags: Schema.Types.ObjectId[];
+    trainers: Schema.Types.ObjectId[];
+}
 
 const LocalizedVideoSchema = new Schema<ILocalizedVideo & Document>(
     {

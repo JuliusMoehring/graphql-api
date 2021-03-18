@@ -10,7 +10,18 @@ import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchem
 import {ICourse} from '../../../shared/models/interfaces/Course/Course';
 import {ILocalizedCourse} from '../../../shared/models/interfaces/Course/LocalizedCourse';
 
-interface IMongooseCourse extends IMongooseResult, ICourse {}
+interface IMongooseLocalizedCourse extends Omit<ILocalizedCourse, 'videos'> {
+    videos: Schema.Types.ObjectId[];
+}
+
+interface IMongooseCourse
+    extends IMongooseResult,
+        Omit<ICourse, 'localizedFields' | 'categories' | 'tags' | 'trainers'> {
+    localizedFields: IMongooseLocalizedCourse[];
+    categories: Schema.Types.ObjectId[];
+    tags: Schema.Types.ObjectId[];
+    trainers: Schema.Types.ObjectId[];
+}
 
 const LocalizedCourseSchema = new Schema<ILocalizedCourse & Document>(
     {

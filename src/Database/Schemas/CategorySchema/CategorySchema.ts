@@ -8,7 +8,12 @@ import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLoca
 import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getReleasableSchemaDefinition';
 import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
 
-interface IMongooseCategory extends IMongooseResult, ICategory {}
+interface IMongooseCategory extends IMongooseResult, Omit<ICategory, 'children' | 'courses' | 'trainers' | 'videos'> {
+    children: Schema.Types.ObjectId[];
+    courses: Schema.Types.ObjectId[];
+    trainers: Schema.Types.ObjectId[];
+    videos: Schema.Types.ObjectId[];
+}
 
 const LocalizedCategorySchema = new Schema<ILocalizedCategory & Document>(
     {
