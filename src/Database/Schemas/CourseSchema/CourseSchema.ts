@@ -10,13 +10,14 @@ import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchem
 import {ICourse} from '../../../shared/models/interfaces/Course/Course';
 import {ILocalizedCourse} from '../../../shared/models/interfaces/Course/LocalizedCourse';
 
-interface IMongooseLocalizedCourse extends Omit<ILocalizedCourse, 'videos'> {
+interface IMongooseLocalizedCourse extends IMongooseResult, Omit<ILocalizedCourse, '_id' | 'videos'> {
+    _id: Schema.Types.ObjectId;
     videos: Schema.Types.ObjectId[];
 }
 
-interface IMongooseCourse
+export interface IMongooseCourse
     extends IMongooseResult,
-        Omit<ICourse, 'localizedFields' | 'categories' | 'tags' | 'trainers'> {
+        Omit<ICourse, '_id' | 'localizedFields' | 'categories' | 'tags' | 'trainers'> {
     localizedFields: IMongooseLocalizedCourse[];
     categories: Schema.Types.ObjectId[];
     tags: Schema.Types.ObjectId[];

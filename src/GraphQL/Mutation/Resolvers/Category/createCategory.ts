@@ -1,55 +1,36 @@
-import {ICategory} from '../../../../shared/models/interfaces/Category/Category';
-import {Category} from '../../../../Database/Schemas/CategorySchema/CategorySchema';
-import {LocaleEnum} from '../../../../shared/models/enums/LocaleEnum';
-import {RobotsEnum} from '../../../../shared/models/enums/RobotsEnum';
+import {Category, IMongooseCategory} from '../../../../Database/Schemas/CategorySchema/CategorySchema';
+import {ICreateCategoryInputType} from '../../../Types/InputObjectTypes/Category/CreateCategoryInputType';
 
-export const createCategory = async (): Promise<ICategory> => {
+export const createCategory = async (inputData: ICreateCategoryInputType): Promise<IMongooseCategory> => {
     try {
         const category = new Category({
-            localizedFields: [
-                {
-                    locale: LocaleEnum.DE,
-                    name: 'Kategorie',
-                    description: 'Beschreibung',
-                    slug: 'kategoie',
-                    releaseData: {
-                        released: true,
-                        releaseDate: new Date(),
-                    },
-                    metaData: {
-                        title: 'Titel',
-                        description: 'Beschreibung',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {
-                            title: 'Titel',
-                            description: 'Beschreibung',
-                        },
+            localizedFields: inputData.localizedFields.map(locale => ({
+                locale: locale.locale,
+                name: locale.name,
+                description: locale.description,
+                slug: locale.slug,
+                releaseData: {
+                    released: locale.releaseData.released,
+                    releaseDate: locale.releaseData.releaseDate,
+                },
+                metaData: {
+                    title: locale.metaData.title,
+                    description: locale.metaData.description,
+                    robots: locale.metaData.robots,
+                    og: {
+                        title: locale.metaData.og?.title || locale.metaData.title,
+                        description: locale.metaData.og?.description || locale.metaData.description,
                     },
                 },
-                {
-                    locale: LocaleEnum.EN,
-                    name: 'Category',
-                    description: 'Description',
-                    slug: 'category',
-                    releaseData: {
-                        released: false,
-                    },
-                    metaData: {
-                        title: 'Titel',
-                        description: 'Description',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {
-                            title: 'Titel',
-                            description: 'Description',
-                        },
-                    },
-                },
-            ],
-        } as ICategory);
+            })),
+            courses: inputData.courses || [],
+            trainers: inputData.trainers || [],
+            videos: inputData.videos || [],
+        });
 
         const categoryDocument = await category.save();
 
-        return {...categoryDocument._doc};
+        return categoryDocument;
     } catch (error) {
         throw error;
     }

@@ -1,11 +1,7 @@
 import {IImage} from '../Image/Image';
-import {Localizable} from '../ExtendableInterfaces/Localizable';
-import {Publishable} from '../ExtendableInterfaces/Publishable';
-import {Releasable} from '../ExtendableInterfaces/Releasable';
-import {Creatable} from '../ExtendableInterfaces/Createable';
-import {Updatable} from '../ExtendableInterfaces/Updatable';
+import {Creatable, Identifiable, Localizable, Publishable, Releasable, Updatable} from '../ExtendableInterfaces';
 
-export interface ILocalizedTrainer extends Localizable, Publishable, Releasable, Creatable, Updatable {
+export interface ILocalizedTrainer extends Identifiable, Localizable, Publishable, Releasable, Creatable, Updatable {
     firstName: string;
     lastName: string;
     description: string;

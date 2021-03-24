@@ -6,7 +6,7 @@ import {getDefaultSchemaOptions} from '../utils/getDefaultSchemaOptions';
 import {IMongooseResult} from '../../../shared/models/interfaces/MongooseResult/MongooseResult';
 import {getLocalizableSchemaDefinition} from '../utils/SchemaDefinitions/getLocalizableSchemaDefiniton';
 
-interface IMongooseTag extends IMongooseResult, Omit<ITag, 'courses' | 'trainers' | 'videos'> {
+export interface IMongooseTag extends IMongooseResult, Omit<ITag, '_id' | 'courses' | 'trainers' | 'videos'> {
     courses: Schema.Types.ObjectId[];
     trainers: Schema.Types.ObjectId[];
     videos: Schema.Types.ObjectId[];

@@ -8,8 +8,10 @@ import {exampleVideo} from './video';
 export const getExampleCategory = (): ICategory => ({...exampleCategory});
 
 export const exampleCategory: ICategory = {
+    _id: '',
     localizedFields: [
         {
+            _id: '',
             locale: LocaleEnum.DE,
             name: 'name',
             description: 'description',
@@ -31,6 +33,7 @@ export const exampleCategory: ICategory = {
             createdAt: new Date(),
         },
         {
+            _id: '',
             locale: LocaleEnum.EN,
             name: 'name',
             description: 'description',

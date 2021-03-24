@@ -1,10 +1,9 @@
-import {Creatable} from '../ExtendableInterfaces/Createable';
-import {Updatable} from '../ExtendableInterfaces/Updatable';
 import {UserRoleEnum} from '../../enums/UserRoleEnum';
 import {IUserAddress} from './UserAddress';
 import {ICourse} from '../Course/Course';
+import {Creatable, Identifiable, Updatable} from '../ExtendableInterfaces';
 
-export interface IUser extends Creatable, Updatable {
+export interface IUser extends Identifiable, Creatable, Updatable {
     firstName: string;
     lastName: string;
     email: string;

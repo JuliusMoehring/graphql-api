@@ -1,60 +1,46 @@
-import {ITrainer} from '../../../../shared/models/interfaces/Trainer/Trainer';
-import {Trainer} from '../../../../Database/Schemas/TrainerSchema/TrainerSchema';
-import {LocaleEnum} from '../../../../shared/models/enums/LocaleEnum';
-import {RobotsEnum} from '../../../../shared/models/enums/RobotsEnum';
+import {IMongooseTrainer, Trainer} from '../../../../Database/Schemas/TrainerSchema/TrainerSchema';
+import {ICreateTrainerInputType} from '../../../Types/InputObjectTypes/Trainer/CreateTrainerInputType';
+import {ILocalizedTrainer} from '../../../../shared/models/interfaces/Trainer/LocalizedTrainer';
 
-export const createTrainer = async (): Promise<ITrainer> => {
+export const createTrainer = async (inputData: ICreateTrainerInputType): Promise<IMongooseTrainer> => {
     try {
         const trainer = new Trainer({
-            localizedFields: [
-                {
-                    locale: LocaleEnum.DE,
-                    firstName: 'Vorname',
-                    lastName: 'Nachname',
-                    description: 'Beschreibung',
-                    slug: 'slug',
-                    image: {
-                        source: 'image.png',
-                        alt: 'alt',
-                    },
-                    releaseData: {
-                        released: true,
-                        releaseDate: new Date(),
-                    },
-                    metaData: {
-                        title: 'Titel',
-                        description: 'Beschreibung',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {title: 'Titel', description: 'Beschreibung'},
-                    },
-                },
-                {
-                    locale: LocaleEnum.EN,
-                    firstName: 'First Name',
-                    lastName: 'Last Name',
-                    description: 'Description',
-                    slug: 'slug',
-                    image: {
-                        source: 'image.png',
-                        alt: 'alt',
-                    },
-                    releaseData: {
-                        released: true,
-                        releaseDate: new Date(),
-                    },
-                    metaData: {
-                        title: 'Title',
-                        description: 'Description',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {title: 'Title', description: 'Title'},
-                    },
-                },
-            ],
-        } as ITrainer);
+            localizedFields: inputData.localizedFields.map(
+                locale =>
+                    ({
+                        locale: locale.locale,
+                        firstName: locale.firstName,
+                        lastName: locale.lastName,
+                        description: locale.description,
+                        slug: locale.slug,
+                        image: {
+                            source: locale.image.source,
+                            alt: locale.image.alt,
+                        },
+                        releaseData: {
+                            released: locale.releaseData.released,
+                            releaseDate: locale.releaseData.releaseDate,
+                        },
+                        metaData: {
+                            title: locale.metaData.title,
+                            description: locale.metaData.description,
+                            robots: locale.metaData.robots,
+                            og: {
+                                title: locale.metaData.og?.title || locale.metaData.title,
+                                description: locale.metaData.og?.description || locale.metaData.description,
+                            },
+                        },
+                    } as ILocalizedTrainer),
+            ),
+            categories: inputData.categories || [],
+            courses: inputData.courses || [],
+            tags: inputData.tags || [],
+            videos: inputData.categories || [],
+        });
 
         const trainerDocument = await trainer.save();
 
-        return {...trainerDocument._doc};
+        return trainerDocument;
     } catch (error) {
         throw error;
     }

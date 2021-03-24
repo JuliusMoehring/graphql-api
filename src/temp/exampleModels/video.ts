@@ -8,8 +8,10 @@ import {exampleTag} from './tag';
 import {exampleTrainer} from './trainer';
 
 export const exampleVideo: IVideo = {
+    _id: '',
     localizedFields: [
         {
+            _id: '',
             locale: LocaleEnum.DE,
             title: 'title',
             description: 'description',
@@ -48,11 +50,16 @@ export const exampleVideo: IVideo = {
             createdAt: new Date(),
         },
         {
+            _id: '',
             locale: LocaleEnum.EN,
             title: 'title',
             description: 'description',
             slug: 'slug',
             benefits: ['benefit 1', 'benefit 2', 'benefit 3'],
+            image: {
+                source: 'image.png',
+                alt: 'alt',
+            },
             sources: [
                 {
                     contentType: ContentTypeEnum.TRAILER,

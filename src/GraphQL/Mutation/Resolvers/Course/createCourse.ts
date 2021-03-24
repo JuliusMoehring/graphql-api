@@ -1,73 +1,47 @@
-import {LocaleEnum} from '../../../../shared/models/enums/LocaleEnum';
-import {ICourse} from '../../../../shared/models/interfaces/Course/Course';
-import {Course} from '../../../../Database/Schemas/CourseSchema/CourseSchema';
-import {ContentTypeEnum} from '../../../../shared/models/enums/ContentTypeEnum';
-import {RobotsEnum} from '../../../../shared/models/enums/RobotsEnum';
+import {Course, IMongooseCourse} from '../../../../Database/Schemas/CourseSchema/CourseSchema';
+import {ICreateCourseInputType} from '../../../Types/InputObjectTypes/Course/CreateCourseInputType';
 
-export const createCourse = async (): Promise<ICourse> => {
+export const createCourse = async (inputData: ICreateCourseInputType): Promise<IMongooseCourse> => {
     try {
         const course = new Course({
-            localizedFields: [
-                {
-                    locale: LocaleEnum.DE,
-                    title: 'Titel',
-                    description: 'Beschreibung',
-                    slug: 'slug',
-                    benefits: ['benefit 1', 'benefit 2', 'benefit 3'],
-                    image: {
-                        source: 'image.png',
-                        alt: 'alt',
-                    },
-                    trailer: {
-                        contentType: ContentTypeEnum.TRAILER,
-                        source: 'trailer.m3u8',
-                        duration: 10,
-                    },
-                    videos: ['6052821f7527eb30209d667a'],
-                    releaseData: {
-                        released: true,
-                        releaseDate: new Date(),
-                    },
-                    metaData: {
-                        title: 'Titel',
-                        description: 'Beschreibung',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {title: 'Titel', description: 'Beschreibung'},
+            localizedFields: inputData.localizedFields.map(locale => ({
+                locale: locale.locale,
+                title: locale.title,
+                description: locale.description,
+                slug: locale.slug,
+                benefits: locale.benefits,
+                image: {
+                    source: locale.image.source,
+                    alt: locale.image.alt,
+                },
+                trailer: {
+                    contentType: locale.trailer.contentType,
+                    source: locale.trailer.source,
+                    duration: locale.trailer.duration,
+                },
+                videos: locale.videos,
+                releaseData: {
+                    released: locale.releaseData.released,
+                    releaseDate: locale.releaseData.releaseDate,
+                },
+                metaData: {
+                    title: locale.metaData.title,
+                    description: locale.metaData.description,
+                    robots: locale.metaData.robots,
+                    og: {
+                        title: locale.metaData.og?.title || locale.metaData.title,
+                        description: locale.metaData.og?.description || locale.metaData.description,
                     },
                 },
-                {
-                    locale: LocaleEnum.EN,
-                    title: 'Titel',
-                    description: 'Description',
-                    slug: 'slug',
-                    benefits: ['benefit 1', 'benefit 2', 'benefit 3'],
-                    image: {
-                        source: 'image.png',
-                        alt: 'alt',
-                    },
-                    trailer: {
-                        contentType: ContentTypeEnum.TRAILER,
-                        source: 'trailer.m3u8',
-                        duration: 10,
-                    },
-                    videos: ['6052821f7527eb30209d667a'],
-                    releaseData: {
-                        released: true,
-                        releaseDate: new Date(),
-                    },
-                    metaData: {
-                        title: 'Titel',
-                        description: 'Description',
-                        robots: RobotsEnum.INDEX_FOLLOW,
-                        og: {title: 'Titel', description: 'Description'},
-                    },
-                },
-            ],
+            })),
+            categories: inputData.categories || [],
+            tags: inputData.tags || [],
+            trainers: inputData.trainers || [],
         });
 
         const courseDocument = await course.save();
 
-        return {...courseDocument._doc};
+        return courseDocument;
     } catch (error) {
         throw error;
     }

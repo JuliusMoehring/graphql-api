@@ -4,10 +4,13 @@ import {RobotsEnum} from '../../shared/models/enums/RobotsEnum';
 import {exampleCategory} from './category';
 import {exampleCourse} from './course';
 import {exampleVideo} from './video';
+import {exampleTag} from './tag';
 
 export const exampleTrainer: ITrainer = {
+    _id: '',
     localizedFields: [
         {
+            _id: '',
             locale: LocaleEnum.DE,
             firstName: 'firstName',
             lastName: 'lastName',
@@ -31,6 +34,7 @@ export const exampleTrainer: ITrainer = {
             createdAt: new Date(),
         },
         {
+            _id: '',
             locale: LocaleEnum.EN,
             firstName: 'firstName',
             lastName: 'lastName',
@@ -56,6 +60,7 @@ export const exampleTrainer: ITrainer = {
     ],
     categories: [exampleCategory, exampleCategory],
     courses: [exampleCourse, exampleCourse],
+    tags: [exampleTag, exampleTag],
     videos: [exampleVideo, exampleVideo],
     createdAt: new Date(),
     updatedAt: new Date(),

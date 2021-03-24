@@ -1,25 +1,14 @@
 import {ITrainer} from '../../../shared/models/interfaces/Trainer/Trainer';
-import {Trainer} from '../../Schemas/TrainerSchema/TrainerSchema';
 import {Schema} from 'mongoose';
-import {getCategoryById} from '../Category/getCategoryById';
-import {getCourseById} from '../Course/getCourseById';
-import {getVideoById} from '../Video/getVideoById';
+import {getTrainerDocumentById} from './getTrainerDocumentById';
+import {getTrainerFromTrainerDocument} from '../../Helpers/Trainer/getTrainerFromTrainerDocument';
 
-export const getTrainerById = (id: string | Schema.Types.ObjectId): Promise<ITrainer> => {
-    return Trainer.findById(id)
-        .then(trainer => {
-            if (!trainer) {
-                throw new Error(`No trainer with id ${id} found`);
-            }
+export const getTrainerById = async (id: string | Schema.Types.ObjectId): Promise<ITrainer> => {
+    try {
+        const trainer = await getTrainerDocumentById(id);
 
-            return {
-                ...trainer._doc,
-                categories: trainer.categories.map(categoryId => getCategoryById(categoryId)),
-                courses: trainer.courses.map(courseId => getCourseById(courseId)),
-                videos: trainer.videos.map(videoId => getVideoById(videoId)),
-            } as ITrainer;
-        })
-        .catch(error => {
-            throw error;
-        });
+        return getTrainerFromTrainerDocument(trainer);
+    } catch (error) {
+        throw error;
+    }
 };

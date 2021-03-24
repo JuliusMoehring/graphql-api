@@ -1,7 +1,5 @@
-import {Localizable} from '../ExtendableInterfaces/Localizable';
-import {Creatable} from '../ExtendableInterfaces/Createable';
-import {Updatable} from '../ExtendableInterfaces/Updatable';
+import {Creatable, Identifiable, Localizable, Updatable} from '../ExtendableInterfaces';
 
-export interface ILocalizedTag extends Localizable, Creatable, Updatable {
+export interface ILocalizedTag extends Identifiable, Localizable, Creatable, Updatable {
     name: string;
 }

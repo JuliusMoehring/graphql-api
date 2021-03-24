@@ -9,9 +9,12 @@ import {getReleasableSchemaDefinition} from '../utils/SchemaDefinitions/getRelea
 import {getPublishableSchemaDefinition} from '../utils/SchemaDefinitions/getPublishableSchemaDefinition';
 import {getImageSchemaDefinition} from '../utils/SchemaDefinitions/getImageSchemaDefinition';
 
-interface IMongooseTrainer extends IMongooseResult, Omit<ITrainer, 'categories' | 'courses' | 'videos'> {
+export interface IMongooseTrainer
+    extends IMongooseResult,
+        Omit<ITrainer, '_id' | 'categories' | 'courses' | 'tags' | 'videos'> {
     categories: Schema.Types.ObjectId[];
     courses: Schema.Types.ObjectId[];
+    tags: Schema.Types.ObjectId[];
     videos: Schema.Types.ObjectId[];
 }
 
@@ -57,6 +60,12 @@ const TrainerSchema = new Schema<ITrainer & Document>(
         courses: {
             type: [Schema.Types.ObjectId],
             ref: 'Course',
+            required: true,
+            default: [],
+        },
+        tags: {
+            type: [Schema.Types.ObjectId],
+            ref: 'Tag',
             required: true,
             default: [],
         },

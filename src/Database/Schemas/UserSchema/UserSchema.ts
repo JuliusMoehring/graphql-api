@@ -5,7 +5,7 @@ import {IUser} from '../../../shared/models/interfaces/User/User';
 import {getUserRolesSchemaDefinition} from '../utils/SchemaDefinitions/getUserRolesSchemaDefinition';
 import {getUserAddressSchemaDefinition} from '../utils/SchemaDefinitions/getUserAddressSchemaDefinition';
 
-interface IMongooseUser extends IMongooseResult, Omit<IUser, 'courseFavorites'> {
+export interface IMongooseUser extends IMongooseResult, Omit<IUser, '_id' | 'courseFavorites'> {
     courseFavorites: Schema.Types.ObjectId[];
 }
 

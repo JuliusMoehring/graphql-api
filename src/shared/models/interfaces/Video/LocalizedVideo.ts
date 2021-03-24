@@ -1,12 +1,8 @@
-import {Localizable} from '../ExtendableInterfaces/Localizable';
 import {IImage} from '../Image/Image';
 import {IVideoSource} from '../VideoSource/VideoSource';
-import {Publishable} from '../ExtendableInterfaces/Publishable';
-import {Releasable} from '../ExtendableInterfaces/Releasable';
-import {Creatable} from '../ExtendableInterfaces/Createable';
-import {Updatable} from '../ExtendableInterfaces/Updatable';
+import {Creatable, Identifiable, Localizable, Publishable, Releasable, Updatable} from '../ExtendableInterfaces';
 
-export interface ILocalizedVideo extends Localizable, Publishable, Releasable, Creatable, Updatable {
+export interface ILocalizedVideo extends Identifiable, Localizable, Publishable, Releasable, Creatable, Updatable {
     title: string;
     description: string;
     benefits: string[];

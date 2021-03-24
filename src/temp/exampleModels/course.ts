@@ -8,8 +8,10 @@ import {exampleTag} from './tag';
 import {exampleTrainer} from './trainer';
 
 export const exampleCourse: ICourse = {
+    _id: '',
     localizedFields: [
         {
+            _id: '',
             locale: LocaleEnum.DE,
             title: 'title',
             description: 'description',
@@ -42,6 +44,7 @@ export const exampleCourse: ICourse = {
             createdAt: new Date(),
         },
         {
+            _id: '',
             locale: LocaleEnum.EN,
             title: 'title',
             description: 'description',
